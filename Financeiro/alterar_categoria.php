@@ -2,26 +2,34 @@
 
     require_once '../DAO/CategoriaDAO.php';
 
-    if(isset($_POST['btnSalvar'])){
-        $nome = ltrim(trim($_POST['nomeCategoria']));
+    $dao = new CategoriaDAO();
 
-        $objDAO = new CategoriaDAO();
+    if(isset($_GET['cod']) && is_numeric($_GET['cod'])){
 
-        $ret = $objDAO->CadastrarCategoria($nome);
-        if($ret == -1){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Nome da Categoria!</div>';
+        $idCategoria = $_GET['cod'];
+        $dados = $dao->DetalharCategoria($idCategoria);
+
+        // se tem alguma coisa dentro do ARRAY dados
+        if(count($dados) == 0){
+            header('location: consultar_categoria.php');
+            exit;
         }
-        elseif($ret == 1){
-            $msg = '<div class="alert alert-success">
-            Ação realizada com sucesso! </div>';
-        }
-        elseif($ret == 0){
-            $msg = '<div class="alert alert-warning">
-            Ocorreu um erro na opereção! </div>';
-        }
+    }elseif(isset($_POST['btnSalvar'])){
+        $idCategoria = $_POST['cod'];
+        $nomeCategoria = $_POST['nomeCategoria'];
+
+        $ret = $dao->AlterarCategoria($nomeCategoria,$idCategoria);
+
+        header('location: consultar_categoria.php?ret=' . $ret);
     }
-    
+    elseif(isset($_POST['btnExcluir'])){
+
+    }
+
+    else{
+        header('location: consultar_categoria.php');
+        exit;
+    }
 
 ?>
 
@@ -51,12 +59,13 @@
                     </div>
                 </div>
                 <hr />
-                <form action="alterar_categoria" method="post">
+                <form action="alterar_categoria.php" method="post">
+                    <input type="hidden" name="cod" value="<?= $dados[0]['id_categoria'] ?>">
                     <div class="form-group">
                         <label>Nome da Categoria:</label>
-                        <input class="form-control" placeholder="Digite sua Categoria..." name="nomeCategoria" id="nomeCategoria" value=""/>
+                        <input class="form-control" placeholder="Digite sua Categoria..." name="nomeCategoria" id="nomeCategoria" value="<?= $dados[0]['nome_categoria'] ?>"/>
                     </div>
-                    <button class="btn btn-success" onclick="return ValidarCategoria()" name="btnGravar">Salvar</button>
+                    <button class="btn btn-success" onclick="return ValidarCategoria()" name="btnSalvar">Salvar</button>
                     <button class="btn btn-danger" name="btnExcluir">Excluir</button>
                 </form>
             </div>

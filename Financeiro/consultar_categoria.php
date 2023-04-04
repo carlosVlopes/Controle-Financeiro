@@ -1,3 +1,27 @@
+<?php
+
+    require_once '../DAO/CategoriaDAO.php';
+
+    $dao = new CategoriaDAO();
+    $categorias = $dao->ConsultarCategoria();
+
+    if(isset($_GET['ret'])){
+        $ret = $_GET['ret'];
+
+        if($ret == 1){
+            $msg = '<div class="alert alert-success">
+            Ação realizada com sucesso! </div>';
+        }
+        elseif($ret == 0){
+            $msg = '<div class="alert alert-warning">
+            Ocorreu um erro na opereção! </div>';
+        }
+
+
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -18,6 +42,9 @@
                     <div class="col-md-12">
                         <h2>Consultar Categoria</h2>
                         <h5>Consulte todas suas categorias aqui</h5>
+                        <span>
+                            <?= isset($msg) ? $msg : '' ?>
+                        </span>
                     </div>
                 </div>
                 <hr />
@@ -38,10 +65,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>(Categoria)</td>
-                                            <td><a href="alterar_categoria.php"><button class="btn btn-warning">Alterar</button></a></td>
-                                        </tr>
+                                        <?php  for($i=0 ; $i<count($categorias) ; $i++){ ?>
+                                            <tr class="odd gradeX">
+                                                <td><?= $categorias[$i]['nome_categoria']?></td>
+                                                <td><a href="alterar_categoria.php?cod=<?= $categorias[$i]['id_categoria']?>"><button class="btn btn-warning">Alterar</button></a></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
