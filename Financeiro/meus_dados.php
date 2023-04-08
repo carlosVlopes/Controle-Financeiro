@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label>E-mail:</label>
-                        <input class="form-control" placeholder="Digite seu E-mail aqui..." name="emailUsuario" id="emailUsuario" value="<?= $dados[0]['email_usuario'] ?>"/>
+                        <input type="email" class="form-control" placeholder="Digite seu E-mail aqui..." name="emailUsuario" id="emailUsuario" value="<?= $dados[0]['email_usuario'] ?>"/>
                     </div>
                     <button class="btn btn-success" onclick="return ValidarMeusDados()" name="btnGravar">Gravar</button>
                 </form>

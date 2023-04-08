@@ -48,7 +48,7 @@
                         <span>
                             <?= isset($msg) ? $msg : '' ?>
                         </span>
-                        <h2>Nova Categoria</h2>
+                        <h2>Cadastrar Categoria</h2>
                         <h5>Aqui você podera Cadastrar todas as suas Categorias!</h5>
                     </div>
                 </div>

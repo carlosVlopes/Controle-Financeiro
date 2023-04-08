@@ -1,3 +1,28 @@
+<?php
+
+    require_once '../DAO/EmpresaDAO.php';
+
+    $dao = new EmpresaDAO();
+    $empresas = $dao->ConsultarEmpresa();
+
+    if(isset($_GET['ret'])){
+        $ret = $_GET['ret'];
+
+        if($ret == 1){
+            $msg = '<div class="alert alert-success">
+            Ação realizada com sucesso! </div>';
+        }
+        elseif($ret == 0){
+            $msg = '<div class="alert alert-warning">
+            Ocorreu um erro na opereção! </div>';
+        }
+
+
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -18,6 +43,9 @@
                     <div class="col-md-12">
                         <h2>Consultar Empresas</h2>
                         <h5>Consulte todas as suas Empresas aqui!</h5>
+                        <span>
+                            <?= isset($msg) ? $msg : '' ?>
+                        </span>
                     </div>
                 </div>
                 <hr />
@@ -40,12 +68,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($empresas as $item) { ?>
                                         <tr class="odd gradeX">
-                                            <td>teste</td>
-                                            <td>3333333</td>
-                                            <td>Rua Empresa</td>
-                                            <td><a href="alterar_empresa.php"><button class="btn btn-warning">Alterar</button></a></td>
+                                            <td><?= $item['nome_empresa']?></td>
+                                            <td><?= $item['telefone_empresa']?></td>
+                                            <td><?= $item['endereco_empresa']?></td>
+                                            <td><a href="alterar_empresa.php?cod=<?= $item['id_empresa'] ?>"><button class="btn btn-warning">Alterar</button></a></td>
                                         </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

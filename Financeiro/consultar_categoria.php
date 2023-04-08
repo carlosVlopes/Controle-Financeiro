@@ -65,10 +65,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php  for($i=0 ; $i<count($categorias) ; $i++){ ?>
+                                        <?php  foreach($categorias as $item){ ?>
                                             <tr class="odd gradeX">
-                                                <td><?= $categorias[$i]['nome_categoria']?></td>
-                                                <td><a href="alterar_categoria.php?cod=<?= $categorias[$i]['id_categoria']?>"><button class="btn btn-warning">Alterar</button></a></td>
+                                                <td><?= $item['nome_categoria']?></td>
+                                                <td><a href="alterar_categoria.php?cod=<?= $item['id_categoria']?>"><button class="btn btn-warning">Alterar</button></a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

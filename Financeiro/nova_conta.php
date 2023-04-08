@@ -59,7 +59,7 @@
                         <span>
                             <?= isset($msg) ? $msg : '' ?>
                         </span>
-                        <h2>Nova Conta</h2>
+                        <h2>Cadastrar Conta</h2>
                         <h5>Aqui você podera Cadastrar todas as suas Contas Bancárias.</h5>
                     </div>
                 </div>

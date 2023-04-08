@@ -1,40 +1,37 @@
 <?php
 
-// Configurações do site
-define('HOST','localhost'); // IP
-define('USER','root'); //usuario
-define('PASS', null); //senha
-define('DB', 'sistema_financeiro'); //banco
+    // Configurações do site
+    define('HOST','localhost'); // IP
+    define('USER','root'); //usuario
+    define('PASS', null); //senha
+    define('DB', 'sistema_financeiro'); //banco
 
-class Conexao{
+    class Conexao{
+        /** @var PDO */
+        private static $Connect;
 
-    /** @var PDO */
-    private static $Connect;
+        private static function Conectar(){
+            try{
 
-    private static function Conectar(){
-        try{
+                //verefica se a conexão não existe
+                if (self::$Connect == null):
 
-            //verefica se a conexão não existe
-            if (self::$Connect == null):
+                    $dsn = 'mysql:host=' . HOST . ';dbname=' . DB;
+                    self::$Connect = new PDO($dsn, USER, PASS, null);
+                endif;
+            } catch (PDOException $e){
+                echo $e->getMessage();
+            }
 
-                $dsn = 'mysql:host=' . HOST . ';dbname=' . DB;
-                self::$Connect = new PDO($dsn, USER, PASS, null);
-            endif;
-        } catch (PDOException $e){
-            echo $e->getMessage();
+            //Seta os atributos para que seja retornado as excessões do banco
+            self::$Connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+            return self::$Connect;
         }
 
-        //Seta os atributos para que seja retornado as excessões do banco
-        self::$Connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-        return self::$Connect;
+        public static function retornarConexao(){
+            return self::Conectar();
+        }
     }
-
-    public static function retornarConexao(){
-        return self::Conectar();
-    }
-}
-
-
 
 ?>

@@ -1,3 +1,28 @@
+<?php
+
+    require_once '../DAO/ContaDAO.php';
+
+    $dao = new ContaDAO();
+    $contas = $dao->ConsultarConta();
+
+    if(isset($_GET['ret'])){
+        $ret = $_GET['ret'];
+
+        if($ret == 1){
+            $msg = '<div class="alert alert-success">
+            Ação realizada com sucesso! </div>';
+        }
+        elseif($ret == 0){
+            $msg = '<div class="alert alert-warning">
+            Ocorreu um erro na opereção! </div>';
+        }
+
+
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,6 +41,9 @@
                     <div class="col-md-12">
                         <h2>Consultar Contas</h2>
                         <h5>Consulte todas as suas Contas Bancárias aqui!</h5>
+                        <span>
+                            <?= isset($msg) ? $msg : '' ?>
+                        </span>
                     </div>
                 </div>
                 <hr />
@@ -38,13 +66,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>[Nome do Banco]</td>
-                                            <td>[Agência]</td>
-                                            <td>[Número da Conta]</td>
-                                            <td>[Saldo]</td>
-                                            <td><a href="alterar_conta.php"><button class="btn btn-warning">Alterar</button></a></td>
-                                        </tr>
+                                        <?php foreach($contas as $item) { ?>
+                                            <tr class="odd gradeX">
+                                                <td><?= $item['banco_conta'] ?></td>
+                                                <td><?= $item['agencia_conta'] ?></td>
+                                                <td><?= $item['numero_conta'] ?></td>
+                                                <td>R$ <?= $item['saldo_conta'] ?></td>
+                                                <td><a href="alterar_conta.php?cod=<?= $item['id_conta'] ?>"><button class="btn btn-warning">Alterar</button></a></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -45,7 +45,7 @@
                         <span>
                             <?= isset($msg) ? $msg : '' ?>
                         </span>
-                        <h2>Nome da Empresa</h2>
+                        <h2>Cadastrar Empresa</h2>
                         <h5>Aqui você podera Cadastrar todos os nomes das Empresas.</h5>
                     </div>
                 </div>
