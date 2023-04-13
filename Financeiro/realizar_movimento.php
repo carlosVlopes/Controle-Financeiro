@@ -1,6 +1,13 @@
 <?php
 
     require_once '../DAO/MovimentoDAO.php';
+    require_once '../DAO/CategoriaDAO.php';
+    require_once '../DAO/EmpresaDAO.php';
+    require_once '../DAO/ContaDAO.php';
+
+    $dao_categora = new CategoriaDAO();
+    $dao_empresa = new EmpresaDAO();
+    $dao_conta = new ContaDAO();
 
     if(isset($_POST['btnSalvar'])){
         $tipo = $_POST['tipo'];
@@ -13,33 +20,8 @@
 
         $objDAO = new MovimentoDAO();
 
-        $ret = $objDAO->RealizarMovimento($tipo,$data,$valor,$categoria,$empresa,$conta);
-
-        if($ret == -1){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Tipo! </div>';
-        }
-        elseif($ret == -2){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Data! </div>';
-        }
-        elseif($ret == -3){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Valor! </div>';
-        }
-        elseif($ret == -4){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Categoria! </div>';
-        }
-        elseif($ret == -5){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Empresa! </div>';
-        }
-        elseif($ret == -6){
-            $msg = '<div class="alert alert-warning">
-            Preencha o campo Conta! </div>';
-        }
-        elseif($ret == 1){
+        $ret = $objDAO->RealizarMovimento($tipo,$data,$valor,$categoria,$empresa,$conta,$obs);
+        if($ret == 1){
             $msg = '<div class="alert alert-success">
             Ação realizada com sucesso! </div>';
         }
@@ -48,6 +30,12 @@
             Ocorreu um erro na opereção! </div>';
         }
     }    
+
+    $categorias = $dao_categora->ConsultarCategoria();
+    $empresas = $dao_empresa->ConsultarEmpresa();
+    $contas = $dao_conta->ConsultarConta();
+
+
 ?>
 
 
@@ -105,21 +93,35 @@
                             <label>Categoria:</label>
                             <select class="form-control" name="categoria" id="categoria" value="<?= isset($categoria) ? $categoria : '' ?>">
                                 <option value="">Selecione</option>
-                                <option value="1">teste</option>
+                                <?php foreach($categorias as $item) { ?>
+                                    <option value="<?= $item['id_categoria']?>">
+                                        <?= $item['nome_categoria']?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Empresa:</label>
                             <select class="form-control" name="empresa" id="empresa" value="<?= isset($empresa) ? $empresa : '' ?>">
-                                <option>Selecione</option>
+                                <option value="">Selecione</option>
+                                <?php foreach($empresas as $item) { ?>
+                                    <option value="<?= $item['id_empresa']?>">
+                                        <?= $item['nome_empresa']?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Conta:</label>
                             <select class="form-control" name="conta" id="conta" value="<?= isset($conta) ? $conta : '' ?>" >
-                                <option>Selecione</option>
+                                <option value="">Selecione</option>
+                                <?php foreach($contas as $item) { ?>
+                                    <option value="<?= $item['id_conta']?>">
+                                        <?= 'Banco: ' . $item['banco_conta'] . ', Agência: ' . $item['agencia_conta'] . ' / ' . $item['numero_conta'] . ' - Saldo: R$ ' . $item['saldo_conta'] ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
