@@ -4,6 +4,8 @@
     require_once '../DAO/CategoriaDAO.php';
     require_once '../DAO/EmpresaDAO.php';
     require_once '../DAO/ContaDAO.php';
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
 
     $dao_categora = new CategoriaDAO();
     $dao_empresa = new EmpresaDAO();

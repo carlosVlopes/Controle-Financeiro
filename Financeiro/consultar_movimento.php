@@ -1,42 +1,43 @@
 <?php
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
+    require_once '../DAO/MovimentoDAO.php';
+    $tipo = '';
 
-require_once '../DAO/MovimentoDAO.php';
-$tipo = '';
+    if (isset($_POST['btnPesquisar'])) {
+        $tipo = $_POST['tipo'];
+        $dataInicial = $_POST['dataInicial'];
+        $dataFinal = $_POST['dataFinal'];
 
-if (isset($_POST['btnPesquisar'])) {
-    $tipo = $_POST['tipo'];
-    $dataInicial = $_POST['dataInicial'];
-    $dataFinal = $_POST['dataFinal'];
+        $dao = new MovimentoDAO();
 
-    $dao = new MovimentoDAO();
+        $movs = $dao->ConsultarMovimento($tipo, $dataInicial, $dataFinal);
 
-    $movs = $dao->ConsultarMovimento($tipo, $dataInicial, $dataFinal);
-
-    if ($movs == -1) {
-        $msg = '<div class="alert alert-warning">
-            Preencha o campo Data Inicial!  </div>';
-    }elseif($movs == -2) {
-        $msg = '<div class="alert alert-warning">
-            Preencha o campo Data Final!  </div>';
+        if ($movs == -1) {
+            $msg = '<div class="alert alert-warning">
+                Preencha o campo Data Inicial!  </div>';
+        }elseif($movs == -2) {
+            $msg = '<div class="alert alert-warning">
+                Preencha o campo Data Final!  </div>';
+        }
     }
-}
-elseif(isset($_POST['btnExcluir'])){
-    $idMovimento = $_POST['idMovimento'];
-    $idConta = $_POST['idConta'];
-    $valorMovimento = $_POST['valorMovimento'];
-    $tipoMovimento = $_POST['tipoMovimento'];
+    elseif(isset($_POST['btnExcluir'])){
+        $idMovimento = $_POST['idMovimento'];
+        $idConta = $_POST['idConta'];
+        $valorMovimento = $_POST['valorMovimento'];
+        $tipoMovimento = $_POST['tipoMovimento'];
 
-    $dao = new MovimentoDAO();
-    $ret = $dao->ExcluirMovimento($idMovimento,$idConta,$valorMovimento,$tipoMovimento);
-    if($ret == 1){
-        $msg = '<div class="alert alert-success">
-        Ação realizada com sucesso! </div>';
+        $dao = new MovimentoDAO();
+        $ret = $dao->ExcluirMovimento($idMovimento,$idConta,$valorMovimento,$tipoMovimento);
+        if($ret == 1){
+            $msg = '<div class="alert alert-success">
+            Ação realizada com sucesso! </div>';
+        }
+        elseif($ret == 0){
+            $msg = '<div class="alert alert-warning">
+            Ocorreu um erro na opereção! </div>';
+        }
     }
-    elseif($ret == 0){
-        $msg = '<div class="alert alert-warning">
-        Ocorreu um erro na opereção! </div>';
-    }
-}
 
 ?>
 

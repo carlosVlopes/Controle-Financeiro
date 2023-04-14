@@ -1,7 +1,8 @@
 <?php
 
     require_once '../DAO/ContaDAO.php';
-
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
     if(isset($_POST['btnGravar'])){
         $banco = trim($_POST['nomeBanco']);
         $agencia = trim($_POST['agencia']);

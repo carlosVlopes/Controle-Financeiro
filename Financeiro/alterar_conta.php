@@ -1,5 +1,7 @@
 <?php
 
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
     require_once '../DAO/ContaDAO.php';
 
     $dao = new ContaDAO();

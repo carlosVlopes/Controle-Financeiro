@@ -1,7 +1,8 @@
 <?php
 
     require_once '../DAO/EmpresaDAO.php';
-
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
     if(isset($_POST['btnGravar'])){
         $nome = trim($_POST['nomeEmpresa']);
         $telefone = trim($_POST['tfEmpresa']);

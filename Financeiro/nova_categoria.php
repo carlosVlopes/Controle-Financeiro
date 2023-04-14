@@ -1,7 +1,8 @@
 <?php
 
     require_once '../DAO/CategoriaDAO.php';
-
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
     if(isset($_POST['btnSalvar'])){
         $nome = ltrim(trim($_POST['nomeCategoria']));
 

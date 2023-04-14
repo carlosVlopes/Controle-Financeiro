@@ -1,7 +1,7 @@
 <?php
 
     require_once '../DAO/UsuarioDAO.php';
-
+    
     if(isset($_POST['btnAcessar'])){
         $email = trim($_POST['emailusuario']);
         $senha = trim($_POST['senhaUsuario']);
@@ -17,6 +17,10 @@
         elseif($ret == -2){
             $msg = '<div class="alert alert-warning">
             Preencha o campo Senha! </div>';
+        }
+        elseif($ret == -3){
+            $msg = '<div class="alert alert-warning">
+            Usuário não encontrado! </div>';
         }
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+    require_once '../DAO/UtilDAO.php';
+    UtilDAO::VerificarLogado();
     require_once '../DAO/UsuarioDAO.php';
 
     $objDAO = new UsuarioDAO();
@@ -17,6 +19,10 @@
         elseif($ret == -2){
             $msg = '<div class="alert alert-warning">
             Preencha o campo Email! </div>';
+        }
+        elseif($ret == -3){
+            $msg = '<div class="alert alert-warning">
+            E-mail já cadastrado. Coloque um outro e-mail!</div>';
         }
         elseif($ret == 1){
             $msg = '<div class="alert alert-success">

@@ -1,5 +1,6 @@
 <?php
 
+    
     require_once '../DAO/UsuarioDAO.php';
 
     if(isset($_POST['btnCadastrar'])){
@@ -35,6 +36,14 @@
         elseif($ret == -5){
             $msg = '<div class="alert alert-warning">
             A senha deverá conter no mínimo 6 caracteres!</div>';
+        }
+        elseif($ret == -6){
+            $msg = '<div class="alert alert-warning">
+            As senhas devem ser iguais!</div>';
+        }
+        elseif($ret == -7){
+            $msg = '<div class="alert alert-warning">
+            E-mail já cadastrado. Coloque um outro e-mail!</div>';
         }
     }
 
@@ -79,7 +88,7 @@
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">@</span>
-                                <input type="text" class="form-control" placeholder="Seu E-mail" name="emailUsuario" id="emailUsuario" value="<?= isset($email) ? $email : '' ?>"/>
+                                <input type="email" class="form-control" placeholder="Seu E-mail" name="emailUsuario" id="emailUsuario" value="<?= isset($email) ? $email : '' ?>"/>
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
