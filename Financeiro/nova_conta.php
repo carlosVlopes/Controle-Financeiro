@@ -68,15 +68,15 @@
                 <form action="nova_conta.php" method="post">
                     <div class="form-group">
                         <label>Nome do Banco:</label>
-                        <input class="form-control" placeholder="Digite o Nome do Banco..." name="nomeBanco" id="nomeBanco" value="<?= isset($banco) ? $banco : '' ?>"/>
+                        <input class="form-control" placeholder="Digite o Nome do Banco..." name="nomeBanco" id="nomeBanco" value="<?= isset($banco) ? $banco : '' ?>" maxlength="30"/>
                     </div>
                     <div class="form-group">
                         <label>Agência:</label>
-                        <input class="form-control" placeholder="Digite a Agência..." name="agencia" id="agencia" value="<?= isset($agencia) ? $agencia : '' ?>"/>
+                        <input class="form-control" placeholder="Digite a Agência..." name="agencia" id="agencia" value="<?= isset($agencia) ? $agencia : '' ?>" maxlength="8"/>
                     </div>
                     <div class="form-group">
                         <label>Número da Conta:</label>
-                        <input class="form-control" placeholder="Digite o Número da Conta..." name="numeroConta" id="numeroConta" value="<?= isset($numero) ? $numero : '' ?>"/>
+                        <input class="form-control" placeholder="Digite o Número da Conta..." name="numeroConta" id="numeroConta" value="<?= isset($numero) ? $numero : '' ?>" maxlength="20"/>
                     </div>
                     <div class="form-group">
                         <label>Saldo:</label>

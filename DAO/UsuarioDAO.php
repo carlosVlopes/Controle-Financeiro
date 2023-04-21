@@ -72,27 +72,28 @@
             } elseif ($senha == '') {
                 return -2;
             }
-
-            $conexao = parent::retornarConexao();
-            $comando_sql = 'select id_usuario, nome_usuario
-                            from tb_usuario
-                            where email_usuario = ?
-                            and senha_usuario = ?;';
-            $sql = new PDOStatement();
-            $sql = $conexao->prepare($comando_sql);
-            $sql->bindValue(1,$email);
-            $sql->bindValue(2,$senha);
-            $sql->setFetchMode(PDO::FETCH_ASSOC);
-            $sql->execute();
-            $user = $sql->fetchAll();
-            if(count($user) == 0){
-                return -3;
-            }else{
-                $cod = $user[0]['id_usuario'];
-                $nome = $user[0]['nome_usuario'];
-                UtilDAO::CriarSessao($cod,$nome);
-                header('location: meus_dados.php');
-                exit;
+            else{
+                $conexao = parent::retornarConexao();
+                $comando_sql = 'select id_usuario, nome_usuario
+                                from tb_usuario
+                                where email_usuario = ?
+                                and senha_usuario = ?;';
+                $sql = new PDOStatement();
+                $sql = $conexao->prepare($comando_sql);
+                $sql->bindValue(1,$email);
+                $sql->bindValue(2,$senha);
+                $sql->setFetchMode(PDO::FETCH_ASSOC);
+                $sql->execute();
+                $user = $sql->fetchAll();
+                if(count($user) == 0){
+                    return -3;
+                }else{
+                    $cod = $user[0]['id_usuario'];
+                    $nome = $user[0]['nome_usuario'];
+                    UtilDAO::CriarSessao($cod,$nome);
+                    header('location: tela_inicial.php');
+                    exit;
+                }
             }
         }
 
@@ -100,35 +101,37 @@
             if(trim($email) == ''){
                 return 0;
             }
-
-            $conexao = parent::retornarConexao();
-            $comando_sql = 'select count(email_usuario) as contar from tb_usuario
-                            where email_usuario = ?';
-            $sql = new PDOStatement();
-            $sql = $conexao->prepare($comando_sql);
-            $sql->bindValue(1,$email);
-            $sql->setFetchMode(PDO::FETCH_ASSOC);
-            $sql->execute();
-            $contar = $sql->fetchAll();
-            return $contar[0]['contar'];
+            else{
+                $conexao = parent::retornarConexao();
+                $comando_sql = 'select count(email_usuario) as contar from tb_usuario
+                                where email_usuario = ?';
+                $sql = new PDOStatement();
+                $sql = $conexao->prepare($comando_sql);
+                $sql->bindValue(1,$email);
+                $sql->setFetchMode(PDO::FETCH_ASSOC);
+                $sql->execute();
+                $contar = $sql->fetchAll();
+                return $contar[0]['contar'];
+            }
         }
         public function VerificarEmaiAlteracao($email){
             if(trim($email) == ''){
                 return 0;
             }
-
-            $conexao = parent::retornarConexao();
-            $comando_sql = 'select count(email_usuario) as contar from tb_usuario
-                            where email_usuario = ?
-                            and id_usuario != ?';
-            $sql = new PDOStatement();
-            $sql = $conexao->prepare($comando_sql);
-            $sql->bindValue(1,$email);
-            $sql->bindValue(2, UtilDAO::CodigoLogado());
-            $sql->setFetchMode(PDO::FETCH_ASSOC);
-            $sql->execute();
-            $contar = $sql->fetchAll();
-            return $contar[0]['contar'];
+            else{
+                $conexao = parent::retornarConexao();
+                $comando_sql = 'select count(email_usuario) as contar from tb_usuario
+                                where email_usuario = ?
+                                and id_usuario != ?';
+                $sql = new PDOStatement();
+                $sql = $conexao->prepare($comando_sql);
+                $sql->bindValue(1,$email);
+                $sql->bindValue(2, UtilDAO::CodigoLogado());
+                $sql->setFetchMode(PDO::FETCH_ASSOC);
+                $sql->execute();
+                $contar = $sql->fetchAll();
+                return $contar[0]['contar'];
+            }
         }
 
         public function CriarCadastro($nome, $email, $senha, $rsenha)

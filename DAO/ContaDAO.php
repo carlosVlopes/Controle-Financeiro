@@ -53,7 +53,7 @@
                                    numero_conta,
                                    saldo_conta
                                 from tb_conta
-                                where id_usuario = ?';
+                                where id_usuario = ? order by banco_conta ASC';
             $sql = new PDOStatement();
             $sql = $conexao->prepare($comando_sql);      
             $sql->bindValue(1,UtilDAO::CodigoLogado());

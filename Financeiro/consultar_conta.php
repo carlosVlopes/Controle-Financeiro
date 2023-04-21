@@ -61,7 +61,7 @@
                                         <tr>
                                             <th>Nome do Banco</th>
                                             <th>Agência</th>
-                                            <th></th>
+                                            <th>Número</th>
                                             <th>Saldo</th>
                                             <th>Ação</th>
                                         </tr>

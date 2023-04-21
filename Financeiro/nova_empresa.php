@@ -54,15 +54,15 @@
                 <form action="nova_empresa.php" method="post">
                     <div class="form-group">
                         <label>Nome da Empresa:</label>
-                        <input class="form-control" placeholder="Digite o Nome da Empresa, Exemplo: Casas Bahia..." name="nomeEmpresa" id="nomeEmpresa" value="<?= isset($nome) ? $nome : '' ?>"/>
+                        <input class="form-control" placeholder="Digite o Nome da Empresa, Exemplo: Casas Bahia..." name="nomeEmpresa" id="nomeEmpresa" value="<?= isset($nome) ? $nome : '' ?>" maxlength="40"/>
                     </div>
                     <div class="form-group">
                         <label>Telefone/Whatsapp:</label>
-                        <input class="form-control" placeholder="Digite o Telefone/Whatsapp da Empresa (Opcional!)" name="tfEmpresa" id="tfEmpresa" value="<?= isset($telefone) ? $telefone : '' ?>"/>
+                        <input class="form-control" placeholder="Digite o Telefone/Whatsapp da Empresa (Opcional!)" name="tfEmpresa" id="tfEmpresa" value="<?= isset($telefone) ? $telefone : '' ?>" maxlength="12"/>
                     </div>
                     <div class="form-group">
                         <label>Endereço:</label>
-                        <input class="form-control" placeholder="Digite o Endereço da Empresa (Opcional!)" name="enderecoEmpresa" id="enderecoEmpresa" value="<?= isset($endereco) ? $endereco : '' ?>"/>
+                        <input class="form-control" placeholder="Digite o Endereço da Empresa (Opcional!)" name="enderecoEmpresa" id="enderecoEmpresa" value="<?= isset($endereco) ? $endereco : '' ?>" maxlength="40"/>
                     </div>
                     <button class="btn btn-success" onclick="return ValidarEmpresa()" name="btnGravar">Gravar</button>
                 </form>           

@@ -68,11 +68,11 @@
                 <form action="meus_dados.php" method="post">
                     <div class="form-group">
                         <label>Nome:</label>
-                        <input class="form-control" placeholder="Digite seu Nome aqui..." name="nomeUsuario" id="nomeUsuario" value="<?= $dados[0]['nome_usuario'] ?>"/>
+                        <input class="form-control" placeholder="Digite seu Nome aqui..." name="nomeUsuario" id="nomeUsuario" value="<?= $dados[0]['nome_usuario'] ?>" maxlength="60"/>
                     </div>
                     <div class="form-group">
                         <label>E-mail:</label>
-                        <input type="email" class="form-control" placeholder="Digite seu E-mail aqui..." name="emailUsuario" id="emailUsuario" value="<?= $dados[0]['email_usuario'] ?>"/>
+                        <input type="email" class="form-control" placeholder="Digite seu E-mail aqui..." name="emailUsuario" id="emailUsuario" value="<?= $dados[0]['email_usuario'] ?>" maxlength="35"/>
                     </div>
                     <button class="btn btn-success" onclick="return ValidarMeusDados()" name="btnGravar">Gravar</button>
                 </form>

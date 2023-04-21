@@ -84,15 +84,15 @@
                             <br />
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-circle-o-notch"></i></span>
-                                <input type="text" class="form-control" placeholder="Seu Nome" name="nomeUsuario" id="nomeUsuario" value="<?= isset($nome) ? $nome : '' ?>"/>
+                                <input type="text" class="form-control" placeholder="Seu Nome" name="nomeUsuario" id="nomeUsuario" value="<?= isset($nome) ? $nome : '' ?>" maxlength="60"/>
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">@</span>
-                                <input type="email" class="form-control" placeholder="Seu E-mail" name="emailUsuario" id="emailUsuario" value="<?= isset($email) ? $email : '' ?>"/>
+                                <input type="email" class="form-control" placeholder="Seu E-mail" name="emailUsuario" id="emailUsuario" value="<?= isset($email) ? $email : '' ?>" maxlength="35"/>
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="Sua Senha (Mínimo 6 caracteres!)" name="senha" id="senha" value="<?= isset($senha) ? $senha : '' ?>"/>
+                                <input type="password" class="form-control" placeholder="Sua Senha (Mínimo 6 caracteres!)" name="senha" id="senha" value="<?= isset($senha) ? $senha : '' ?>" maxlength="8"/>
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>

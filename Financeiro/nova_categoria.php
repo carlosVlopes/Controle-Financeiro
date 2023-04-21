@@ -59,7 +59,7 @@
                         <label>Nome da Categoria:</label>
                         <input class="form-control"
                             placeholder="Digite o Nome da Categoria, Exemplo: Conta de Internet..." name="nomeCategoria"
-                            id="nomeCategoria" value="<?= isset($nome) ? $nome : '' ?>" />
+                            id="nomeCategoria" value="<?= isset($nome) ? $nome : '' ?>" maxlength="40" />
                     </div>
                     <button class="btn btn-success" onclick="return ValidarCategoria()" name="btnSalvar">Salvar</button>
                 </form>

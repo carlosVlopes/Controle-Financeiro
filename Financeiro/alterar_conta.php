@@ -71,15 +71,15 @@
                     <input type="hidden" name="cod" value="<?= $dados[0]['id_conta'] ?>">
                     <div class="form-group">
                         <label>Nome do Banco:</label>
-                        <input class="form-control" placeholder="Digite o Nome do Banco..." name="banco_conta" id="banco_conta" value="<?= $dados[0]['banco_conta'] ?>"/>
+                        <input class="form-control" placeholder="Digite o Nome do Banco..." name="banco_conta" id="banco_conta" value="<?= $dados[0]['banco_conta'] ?>" maxlength="30"/>
                     </div>
                     <div class="form-group">
                         <label>Agência:</label>
-                        <input class="form-control" placeholder="Digite a Agência..." name="agencia_conta" id="agencia_conta" value="<?= $dados[0]['agencia_conta'] ?>"/>
+                        <input class="form-control" placeholder="Digite a Agência..." name="agencia_conta" id="agencia_conta" value="<?= $dados[0]['agencia_conta'] ?>" maxlength="8"/>
                     </div>
                     <div class="form-group">
                         <label>Número da Conta:</label>
-                        <input class="form-control" placeholder="Digite o Número da Conta..." name="numero_conta" id="numero_conta" value="<?= $dados[0]['numero_conta'] ?>"/>
+                        <input class="form-control" placeholder="Digite o Número da Conta..." name="numero_conta" id="numero_conta" value="<?= $dados[0]['numero_conta'] ?>" maxlength="20"/>
                     </div>
                     <div class="form-group">
                         <label>Saldo:</label>

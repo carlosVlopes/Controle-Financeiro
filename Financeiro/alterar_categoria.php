@@ -70,7 +70,7 @@ if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
                     <input type="hidden" name="cod" value="<?= $dados[0]['id_categoria'] ?>">
                     <div class="form-group">
                         <label>Nome da Categoria:</label>
-                        <input class="form-control" placeholder="Digite sua Categoria..." name="nomeCategoria" id="nomeCategoria" value="<?= $dados[0]['nome_categoria'] ?>" />
+                        <input class="form-control" placeholder="Digite sua Categoria..." name="nomeCategoria" id="nomeCategoria" value="<?= $dados[0]['nome_categoria'] ?>" maxlength="40" />
                     </div>
                     <button class="btn btn-success" onclick="return ValidarCategoria()" name="btnSalvar">Salvar</button>
                     <button type="button" data-toggle="modal" data-target="#modalExcluir" class="btn btn-danger">Excluir</button>

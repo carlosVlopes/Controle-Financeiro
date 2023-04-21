@@ -40,7 +40,7 @@
             $comando_sql = 'select id_categoria,
                                     nome_categoria
                                     from tb_categoria
-                                    where id_usuario = ?';
+                                    where id_usuario = ? order by nome_categoria ASC';
 
             $sql = new PDOStatement();
             $sql = $conexao->prepare($comando_sql);

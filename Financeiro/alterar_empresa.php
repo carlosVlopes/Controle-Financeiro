@@ -61,15 +61,15 @@
                     <input type="hidden" name="cod" value="<?= $dados[0]['id_empresa'] ?>" >
                     <div class="form-group">
                         <label>Nome da Empresa:</label>
-                        <input class="form-control" placeholder="Digite o Nome da Empresa..." name="nomeEmpresa" id="nomeEmpresa" value="<?= $dados[0]['nome_empresa'] ?>"/>
+                        <input class="form-control" placeholder="Digite o Nome da Empresa..." name="nomeEmpresa" id="nomeEmpresa" value="<?= $dados[0]['nome_empresa'] ?>" maxlength="40"/>
                     </div>
                     <div class="form-group">
                         <label>Telefone/Whatsapp:</label>
-                        <input class="form-control" placeholder="Digite o Telefone/Whatsapp..." name="telefone_empresa" id="telefone_empresa" value="<?= $dados[0]['telefone_empresa'] ?>"/>
+                        <input class="form-control" placeholder="Digite o Telefone/Whatsapp..." name="telefone_empresa" id="telefone_empresa" value="<?= $dados[0]['telefone_empresa'] ?>" maxlength="12"/>
                     </div>
                     <div class="form-group">
                         <label>Endereço:</label>
-                        <input class="form-control" placeholder="Digite o Endereço da Empresa..." name="enderecoEmpresa" id="enderecoEmpresa" value="<?= $dados[0]['endereco_empresa'] ?>"/>
+                        <input class="form-control" placeholder="Digite o Endereço da Empresa..." name="enderecoEmpresa" id="enderecoEmpresa" value="<?= $dados[0]['endereco_empresa'] ?>" maxlength="40"/>
                     </div>
                     <button class="btn btn-success" onclick="return ValidarEmpresa()" name="btnSalvar">Salvar</button>
                     <button type="button" data-toggle="modal" data-target="#modalExcluir" class="btn btn-danger">Excluir</button>

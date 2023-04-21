@@ -41,7 +41,7 @@
                                    telefone_empresa,
                                    endereco_empresa
                                 from tb_empresa
-                                where id_usuario = ?';
+                                where id_usuario = ? order by nome_empresa ASC';
             $sql = new PDOStatement();
             $sql = $conexao->prepare($comando_sql);
             $sql->bindValue(1, UtilDAO::CodigoLogado());
